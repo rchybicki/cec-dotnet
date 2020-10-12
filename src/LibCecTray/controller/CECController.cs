@@ -236,8 +236,8 @@ namespace LibCECTray.controller
     public void Close()
     {
       Lib.DisableCallbacks();
-      Lib.StandbyDevices(CecLogicalAddress.Broadcast);
-      Lib.Close();
+            Lib.StandbyDevices(CecLogicalAddress.Broadcast);
+            Lib.Close();
       _initialised = false;
     }
 
@@ -360,16 +360,16 @@ namespace LibCECTray.controller
     #region Callbacks called by libCEC
     public override int ReceiveCommand(CecCommand command)
     {
-        if (command.Opcode == CecOpcode.Standby &&
-            (command.Destination == CecLogicalAddress.Broadcast || command.Destination == _lib.GetLogicalAddresses().Primary))
-        if (Settings.StopTvStandby.Value)
-        {
-            var key = new CecKeypress(CecUserControlCode.Stop, 0);
-            foreach (var app in _applications)
-                app.SendKey(key, false);
-            Lib.DisableCallbacks();
-            Application.SetSuspendState(PowerState.Suspend, false, false);
-        }
+        //if (command.Opcode == CecOpcode.Standby &&
+        //    (command.Destination == CecLogicalAddress.Broadcast || command.Destination == _lib.GetLogicalAddresses().Primary))
+        //if (Settings.StopTvStandby.Value)
+        //{
+        //    var key = new CecKeypress(CecUserControlCode.Stop, 0);
+        //    foreach (var app in _applications)
+        //        app.SendKey(key, false);
+        //    Lib.DisableCallbacks();
+        //    Application.SetSuspendState(PowerState.Suspend, false, false);
+        //}
         return 0;
     }
 
